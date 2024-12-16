@@ -1,0 +1,65 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+    	<title>Hiển thị kết quả</title>
+	</h:head>
+    <body>
+    <h:form>
+    <!-- Bảng hiển thị danh sách nhân viên -->
+    <h:dataTable  value="#{employeeBean.getAll()}" var="employee" border="1">
+        <h:column>
+            <f:facet name="header">Mã nhân viên</f:facet>
+            #{employee.code}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Tên</f:facet>
+            #{employee.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Tuổi</f:facet>
+            #{employee.age}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Ngày sinh</f:facet>
+            #{employee.dob}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Xóa</f:facet>
+            <h:commandButton value="Xóa" action="#{employeeBean.delete(employee.code)}">
+            </h:commandButton>
+        </h:column>
+         <h:column>
+            <f:facet name="header">Chi tiết</f:facet>
+            <h:commandButton value="Xem thêm" action="#{employeeBean.search(employee.code)}">
+            </h:commandButton>
+        </h:column>
+    </h:dataTable>
+
+    <!-- Form để thêm nhân viên -->
+    <h3>Thêm Nhân Viên</h3>
+    <h:panelGrid columns="2">
+        <h:outputLabel value="Tên:" />
+        <h:inputText value="#{employeeBean.newEmployee.name}" />
+
+        <h:outputLabel value="Tuổi:" />
+        <h:inputText id="age" validator="ageValidator" value="#{employeeBean.newEmployee.age}">
+        <h:message for="age" />
+        </h:inputText>
+        
+        <h:outputLabel value="Ngày sinh:" />
+        <h:inputText id="dob" value="#{employeeBean.newEmployee.dob}" placeholder="yyyy-MM-dd">
+            <f:converter converterId="DateConverter"/>
+            <f:validator validatorId="dateFormatValidator" />
+       		 <h:message for="dob" />
+        </h:inputText>
+    </h:panelGrid>
+
+    <h:commandButton value="Thêm" action="#{employeeBean.add()}">
+    </h:commandButton>
+</h:form>
+    </body>
+</html>
+

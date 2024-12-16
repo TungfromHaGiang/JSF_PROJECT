@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+    	<title>Hiển thị kết quả</title>
+	</h:head>
+    <body>
+    <h:form>
+    <!-- Form để thêm nhân viên -->
+    <h3>Sửa thông tin Nhân Viên</h3>
+    <h:panelGrid columns="2">
+        <h:outputLabel value="Tên:" />
+        <h:inputText   value="#{employeeBean.newEmployee.name}" />
+
+        <h:outputLabel value="Tuổi:" />
+        <h:inputText value="#{employeeBean.newEmployee.age}" />
+
+        <h:outputLabel value="Ngày sinh:" />
+        <h:inputText value="#{employeeBean.newEmployee.dob}" placeholder="yyyy-MM-dd">
+            <f:converter converterId="DateConverter" />
+        </h:inputText>
+    </h:panelGrid>
+
+    <h:commandButton value="Thêm" action="#{employeeBean.update(employeeBean.newEmployee)}">
+    <br />
+	            <div>
+	                <h:commandButton value="Trang chủ" action="index.xhtml" />
+	            </div>
+            <br />
+    </h:commandButton>
+</h:form>
+    </body>
+</html>

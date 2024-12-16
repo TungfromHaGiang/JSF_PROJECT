@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Chi tiết nhân viên</title>
+    </h:head>
+    <body>
+        <h:form>
+            <!-- Hiển thị thông tin của nhân viên -->
+            <div>
+                <h:outputText value="Mã nhân viên: #{employeeBean.newEmployee.code}" />
+            </div>
+            <div>
+                <h:outputText value="Tên: #{employeeBean.newEmployee.name}" />
+            </div>
+            <div>
+                <h:outputText value="Tuổi: #{employeeBean.newEmployee.age}" />
+            </div>
+            <div>
+                <h:outputText value="Ngày sinh: #{employeeBean.newEmployee.dob}" />
+            </div>
+         	<br />
+	            <div>
+	                <h:commandButton value="Xóa" action="#{employeeBean.delete(employeeBean.newEmployee.code)}" />
+	            </div>
+            <br />
+            <div>
+                <h:commandButton value="Sửa" action="#{employeeBean.showUpdate(employeeBean.newEmployee)}" />
+            </div>
+            <br />
+	            <div>
+	                <h:commandButton value="Trang chủ" action="index.xhtml" />
+	            </div>
+            <br />
+        </h:form>
+    </body>
+</html>
