@@ -45,18 +45,22 @@
         <h:inputText value="#{employeeBean.newEmployee.name}" />
 
         <h:outputLabel value="Tuổi:" />
-        <h:inputText id="age" validator="ageValidator" value="#{employeeBean.newEmployee.age}">
-        <h:message for="age" />
+        <h:inputText id="age"  value="#{employeeBean.newEmployee.age}">
+        <f:validator validatorId="ageValidator" />
+        <f:ajax event="keyup" render="ageMessage" />
         </h:inputText>
+        <br />
+         <h:message id="ageMessage" for="age" style="color:red" />
         
         <h:outputLabel value="Ngày sinh:" />
         <h:inputText id="dob" value="#{employeeBean.newEmployee.dob}" placeholder="yyyy-MM-dd">
+       	    <f:validator validatorId="dateFormatValidator" />
+            <f:ajax event="keyup" render="dateMessage"/>
             <f:converter converterId="DateConverter"/>
-            <f:validator validatorId="dateFormatValidator" />
-       		 <h:message for="dob" />
         </h:inputText>
+        <br />
+         <h:message id="dateMessage" for="dob" style="color:red"/>
     </h:panelGrid>
-
     <h:commandButton value="Thêm" action="#{employeeBean.add()}">
     </h:commandButton>
 </h:form>

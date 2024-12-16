@@ -12,16 +12,13 @@ public class AgeValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-		   if (value == null) {
-	            return;
+		   if (value == null || value.toString().trim().isEmpty()) {
+			   throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_INFO, "Thông báo", "Bạn chưa điền vào"));
 	        }
-
 	        try {
 	            Integer number = Integer.valueOf(value.toString());
 	            if (number < 18) {
-	            	FacesMessage facesMessage =  new FacesMessage();
-	            	facesMessage.setSummary("Tuổi phải lớn hơn 18");
-	                throw new ValidatorException(facesMessage);
+	                throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_INFO, "Thông báo", "Tuổi phải lớn hơn 18!"));
 	            }
 	        } catch (NumberFormatException e) {
 	        	FacesMessage facesMessage =  new FacesMessage();
